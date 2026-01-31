@@ -1,0 +1,160 @@
+@namespace epub "http://www.idpf.org/2007/ops";
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 1em;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  hyphens: auto;
+  -epub-hyphens: auto;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 2em;
+}
+
+@media (min-width: 500px) {
+  body {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.4em;
+    line-height: 1.7;
+  }
+}
+
+q {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 2.8em;
+  line-height: 1.1;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 2em;
+  line-height: 1.2;
+  text-wrap: balance;
+  letter-spacing: -0.005em;
+}
+
+h3 {
+  font-size: 1.6em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h4 {
+  font-size: 1.4em;
+  line-height: 1.3;
+}
+
+h5 {
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+h6 {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+blockquote {
+  font-size: 1.2em;
+  line-height: 1.4;
+
+  footer {
+    font-size: 0.84em;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 0.5em 0;
+}
+
+p, pre, li {
+  margin: 0.5em 0;
+}
+
+blockquote, table, ol, ul, figure, video, img, nav {
+  margin: 2em 0;
+}
+hr {
+  margin: 2em 0;
+  border: none;
+  border-top: solid 1px;
+}
+ol, ul {
+  ol, ul {
+    margin-top: 0.5em;
+  }
+}
+
+aside[epub|type="endnote"] {
+  font-size: 0.85em;
+  margin: 2em 0 2em 3rem;
+}
+
+:target {
+  outline: 1px dashed;
+  outline-offset: 0.5rem;
+}
+
+ol, ul, blockquote {
+  padding-left: 3rem;
+}
+
+video,
+img {
+  max-width: 100%;
+  display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead th {
+  border-bottom: solid 1px;
+}
+th, td {
+  text-align: left;
+}
+
+a {
+  &:link {
+    color: #312bd7;
+  }
+  &:visited {
+    color: #2c1fa1;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+kbd,
+code {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000;
+  padding: 0.2rem 0.3rem 0.3rem;
+  border-radius: 0.2rem;
+  display: inline-block;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  line-height: 1;
+  font-size: 1.5rem;
+}

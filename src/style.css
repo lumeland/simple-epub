@@ -1,7 +1,3 @@
-@import "css/reset.css";
-
-body {
-  max-inline-size: 60ch;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
+@import "css/base.css";
+@import "css/cover.css";
+@import "css/pagination.css";

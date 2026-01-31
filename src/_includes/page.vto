@@ -1,0 +1,92 @@
+---
+layout: ./base.vto
+---
+{{ set links = nav.breadcrumb(url) }}
+
+{{ if links.length }}
+  <nav>
+    <a href="/toc.xhtml" title="Table of contents">{{ metadata.title }}</a>
+
+    {{ for { data } of links }}
+      {{ if data.url && data.url !== url && data.title }}
+        <a href="{{ data.url }}">{{ data.title }}</a>
+      {{ /if }}
+    {{ /for }}
+  </nav>
+{{ /if }}
+
+<section epub:type="{{ type }}">
+  {{ if title }}
+    <header>
+      <h1 epub:type="title">{{ title }}</h1>
+
+      {{ if subtitle }}
+        <h2 epub:type="subtitle">{{ subtitle }}</h2>
+      {{ /if }}
+    </header>
+  {{ /if }}
+
+  {{ if epigraph }}
+    <div epub:type="epigraph">
+      <blockquote>
+        {{ epigraph.quote |> md }}
+
+        <footer>
+          {{ epigraph.footer |> md }}
+        </footer>
+      </blockquote>
+    </div>
+  {{ /if }}
+
+  {{ content }}
+
+  {{ if type === "chapter" }}
+    {{ set subchapters = nav.menu(url)?.children }}
+
+    {{ if subchapters?.length }}
+      <nav>
+        <span>Chapters in this part</span>
+
+        <ol>
+          {{ for { data } of subchapters }}
+            {{ if data.title && data.url }}
+              <li>
+                <a href="{{ data.url }}">{{ data.title }}</a>
+              </li>
+            {{ /if }}
+          {{ /for }}
+        </ol>
+      </nav>
+    {{ /if }}
+  {{ /if }}
+
+  {{ if footnotes.length }}
+    <hr />
+    {{ for note of footnotes }}
+      <aside epub:type="endnote" role="note" id="{{ note.id }}">
+        {{ for refId of note.refIds }}
+          <a href="#{{ refId }}">{{ note.label }}</a>
+        {{ /for }}
+
+        {{ note.content }}
+      </aside>
+    {{ /for }}
+  {{ /if }}
+</section>
+
+{{ if index !== false }}
+  {{ set next = search.nextPage(url, "", "order") }}
+  {{ set previous = search.previousPage(url, "", "order") }}
+
+  <footer>
+    <nav class="pagination">
+      {{ if previous }}
+        <a rel="prev" href="{{ previous.url }}">← {{ previous.title }}</a>
+      {{ /if }}
+
+      {{ if next }}
+        <a rel="next" href="{{ next.url }}">{{ next.title }} →</a>
+      {{ /if }}
+    </nav>
+  </footer>
+{{ /if }}

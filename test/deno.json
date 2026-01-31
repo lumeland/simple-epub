@@ -1,9 +1,9 @@
 {
   "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.0/",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.13.0/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@c733108e1498234171f6af7a8fb6141eae98160e/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@e222628cf3a1b53a6b4f92cafc7b13b40dd208aa/",
     "theme/": "../",
-    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.12/jsx-runtime.ts"
+    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
   },
   "lock": false,
   "tasks": {
@@ -61,7 +61,7 @@
   },
   "lint": {
     "plugins": [
-      "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.0/lint.ts"
+      "https://cdn.jsdelivr.net/gh/lumeland/lume@c733108e1498234171f6af7a8fb6141eae98160e/lint.ts"
     ],
     "rules": {
       "exclude": [

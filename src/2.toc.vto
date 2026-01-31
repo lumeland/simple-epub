@@ -1,0 +1,35 @@
+---
+layout: base.vto
+index: false
+---
+<nav class="toc" epub:type="toc">
+  <header epub:type="covertitle">
+    <h1 epub:type="title">{{ metadata.title }}</h1>
+
+    {{ if metadata.subtitle }}
+      <p epub:type="subtitle">{{ metadata.subtitle }}</p>
+    {{ /if }}
+  </header>
+
+  {{ set menu = nav.menu("/", "index!=false", "order=asc") }}
+
+  {{ printItem(menu) }}
+</nav>
+
+{{ function printItem(item) }}
+  {{ if item.data.url && item.data.title }}
+    <a href="{{ item.data.url }}">{{ item.data.title }}</a>
+  {{ /if }}
+
+  {{ if item.children?.length }}
+    <ol>
+      {{ for child of item.children }}
+        {{ set li = printItem(child) |> trim }}
+
+        {{ if li }}
+          <li>{{ li }}</li>
+        {{ /if }}
+      {{ /for }}
+    </ol>
+  {{ /if }}
+{{ /function }}

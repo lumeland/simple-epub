@@ -3,6 +3,14 @@ import plugins from "./plugins.ts";
 
 const site = lume({
   src: "./src",
+  prettyUrls: false,
+  server: {
+    root: "epub",
+  },
+}, {
+  markdown: {
+    options: { xhtmlOut: true },
+  },
 });
 
 site.use(plugins());

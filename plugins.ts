@@ -1,20 +1,23 @@
 import lightningcss from "lume/plugins/lightningcss.ts";
-import basePath from "lume/plugins/base_path.ts";
-import metas from "lume/plugins/metas.ts";
-import { Options as SitemapOptions, sitemap } from "lume/plugins/sitemap.ts";
-import { favicon, Options as FaviconOptions } from "lume/plugins/favicon.ts";
 import { merge } from "lume/core/utils/object.ts";
+import epub, { type Options as EpubOptions } from "lume/plugins/epub.ts";
+import nav from "lume/plugins/nav.ts";
+import extractOrder from "lume/plugins/extract_order.ts";
+import footnotes from "https://cdn.jsdelivr.net/gh/lumeland/markdown-plugins@0.11.1/footnotes.ts";
 
 import "lume/types.ts";
 
 export interface Options {
-  sitemap?: Partial<SitemapOptions>;
-  favicon?: Partial<FaviconOptions>;
+  epub?: Partial<EpubOptions>;
 }
 
 export const defaults: Options = {
-  favicon: {
-    input: "uploads/favicon.svg",
+  epub: {
+    outputPages: true,
+    metadata: {
+      title: "Title of the book",
+      cover: "/img/cover.jpg",
+    },
   },
 };
 
@@ -25,11 +28,14 @@ export default function (userOptions?: Options) {
   return (site: Lume.Site) => {
     site
       .use(lightningcss())
-      .use(basePath())
-      .use(metas())
-      .use(sitemap(options.sitemap))
-      .use(favicon(options.favicon))
-      .add("uploads")
-      .add("style.css");
+      .use(nav())
+      .use(extractOrder())
+      .use(footnotes({
+        referenceAttrs: {
+          "epub:type": "noteref",
+        },
+      }))
+      .use(epub(options.epub))
+      .add("/");
   };
 }
