@@ -7,10 +7,6 @@ const site = lume({
   server: {
     root: "epub",
   },
-}, {
-  markdown: {
-    options: { xhtmlOut: true },
-  },
 });
 
 site.use(plugins());
