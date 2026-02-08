@@ -10,6 +10,11 @@ export default function (options: Partial<Options> = {}) {
     site.use(plugins(options));
 
     // Add the files needed for the theme
-    site.remote("/", import.meta.resolve("./src"), ["/**/*"]);
+    site.remote("/", import.meta.resolve("./src"), [
+      "/_includes/**/*",
+      "/_data.yml",
+      "/*.css",
+      "/*.vto",
+    ]);
   };
 }
