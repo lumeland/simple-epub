@@ -13,7 +13,7 @@ export interface Options {
 
 export const defaults: Options = {
   epub: {
-    outputPages: true,
+    outputUncompressed: true,
     metadata: {
       title: "Title of the book",
       cover: "/img/cover.jpg",
